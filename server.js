@@ -1,6 +1,6 @@
 require('dotenv').config();
 const express = require('express');
-const http = require('http');
+const http = require('http');   // use http, not https
 const cors = require('cors');
 const mongoose = require('mongoose');
 const socketio = require('socket.io');
@@ -12,7 +12,7 @@ const Message = require('./models/Message');
 const User = require('./models/User');
 
 const app = express();
-const server = http.createServer(app);
+const server = http.createServer(app);  
 const io = socketio(server, { cors: { origin: '*' } });
 
 app.use(cors());
@@ -28,13 +28,12 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
   .then(()=> console.log('MongoDB connected'))
   .catch(err => console.error(err));
 
-// Basic online users map
-const onlineUsers = new Map(); // socketId -> { userId, username }
+// Online users map
+const onlineUsers = new Map();
 
 io.on('connection', socket => {
   console.log('socket connected', socket.id);
 
-  // when a client authenticates after connecting
   socket.on('auth', async ({ token }) => {
     try {
       const payload = jwt.verify(token, process.env.JWT_SECRET);
@@ -51,7 +50,6 @@ io.on('connection', socket => {
   socket.on('joinRoom', async ({ room }) => {
     socket.join(room);
     socket.currentRoom = room;
-    // send last messages for room
     const msgs = await Message.find({ room }).sort({ createdAt: 1 }).limit(200).lean();
     socket.emit('roomHistory', msgs);
   });
@@ -73,7 +71,10 @@ io.on('connection', socket => {
       const message = new Message({ room, user: user._id, username: user.username, text });
       await message.save();
 
-      const msgForClient = { _id: message._id, room, user: user._id, username: user.username, text, createdAt: message.createdAt };
+      const msgForClient = { 
+        _id: message._id, room, user: user._id, 
+        username: user.username, text, createdAt: message.createdAt 
+      };
 
       io.to(room).emit('newMessage', msgForClient);
     } catch (err) {
