@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Chat — Modern</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <script src="https://cdn.socket.io/4.8.0/socket.io.min.js"></script>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">Chat<span>ly</span></div>
+      <div class="user-panel">
+        <div id="currentUser"></div>
+        <button id="logoutBtn" class="btn small">Logout</button>
+      </div>
+      <div class="rooms">
+        <h4>Rooms</h4>
+        <ul id="roomsList">
+          <li data-room="general" class="room active"># general</li>
+          <li data-room="tech" class="room"># tech</li>
+          <li data-room="random" class="room"># random</li>
+        </ul>
+      </div>
+      <div class="online">
+        <h4>Online</h4>
+        <ul id="onlineList"></ul>
+      </div>
+    </aside>
+
+    <main class="chat-area">
+      <header class="chat-header"> <h3 id="roomTitle"># general</h3> <div id="typingIndicator" class="typing"></div></header>
+      <ul id="messages" class="messages"></ul>
+      <form id="messageForm" class="message-form">
+        <input id="messageInput" placeholder="Type a message..." autocomplete="off" />
+        <button class="btn">Send</button>
+      </form>
+    </main>
+  </div>
+
+  <script src="/main.js"></script>
+</body>
+</html>
