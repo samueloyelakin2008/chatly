@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: chat-app
+    name: chatly
     env: node
     buildCommand: "npm install"
     startCommand: "node server.js"
@@ -10,3 +10,4 @@ services:
         sync: false
       - key: JWT_SECRET
         sync: false
+
