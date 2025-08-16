@@ -1,12 +1,43 @@
-# Chat App (Ready-to-run)
+# 💬 Chatly
 
-## Quick start
-1. Copy `.env.example` to `.env` and set your `MONGO_URI` and `JWT_SECRET`.
-2. Install dependencies: `npm install`
-3. Start MongoDB (or use Atlas).
-4. Run server: `npm run start` (or `npm run dev` if you have nodemon)
-5. Open http://localhost:3000
+Chatly is a modern real-time chat application built with **Node.js, Express, MongoDB, and Socket.io**, with a sleek frontend interface.  
+It allows users to register, log in, and chat with friends instantly — anywhere, anytime.  
 
-## Notes
-- This is a simple starter project intended for local development/prototyping.
-- For production, secure the JWT (use httpOnly cookies), enable HTTPS, and sanitize inputs.
+---
+
+## 🚀 Features
+- 🔐 **User Authentication** (JWT-based login & registration)
+- 💬 **Real-time Messaging** using Socket.io
+- 📁 **File & Image Sharing**
+- 👤 **User Profiles**
+- 🌓 **Dark/Light Mode** (optional UI theme)
+- 📱 **Responsive Design** (works on desktop & mobile)
+- 🌍 **Deployed on Render**
+
+---
+
+## 🛠️ Tech Stack
+**Frontend:**
+- HTML, CSS, JavaScript *(or React if you used it)*
+
+**Backend:**
+- Node.js
+- Express.js
+- Socket.io
+
+**Database:**
+- MongoDB Atlas (Mongoose ORM)
+
+**Hosting:**
+- Backend: Render  
+- Database: MongoDB Atlas  
+- Frontend: Render 
+
+---
+
+## 📦 Installation & Setup
+
+### 1. Clone the Repository
+```bash
+git clone https://github.com/your-username/chatly.git
+cd chatly
